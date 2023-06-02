@@ -4,18 +4,20 @@ lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
+
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_select = { behavior = cmp.SelectBehavior.Insert }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['Tab'] = cmp.mapping.select_next_item(cmp_select),
     ['S-Tab'] = cmp.mapping.select_prev_item(cmp_select),
 })
 
+
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
 })
 
 
@@ -35,10 +37,9 @@ function showDiagnosticsOnNormalMode()
     end
 end
 
-vim.o.updatetime = 250
+vim.o.updatetime = 100
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua showDiagnosticsOnNormalMode()]]
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-
 
 
 
