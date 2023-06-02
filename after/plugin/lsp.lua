@@ -29,8 +29,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- Show line diagnostics automatically in hover window
+function showDiagnosticsOnNormalMode()
+    if vim.fn.mode() == 'n' and vim.fn.pumvisible() == 0 then
+        vim.diagnostic.open_float(nil, { focus = false })
+    end
+end
+
 vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua showDiagnosticsOnNormalMode()]]
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+
+
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -42,6 +52,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end)
+
 
 
 

@@ -2,11 +2,11 @@
 local keymap = vim.api.nvim_set_keymap
 local opt = { noremap = true }
 local function nkeymap(map, action)
-  keymap('n', map, action, opt)
+    keymap('n', map, action, opt)
 end
 
 local function vkeymap(map, action)
-  keymap('v', map, action, opt)
+    keymap('v', map, action, opt)
 end
 
 -- leader key
@@ -30,11 +30,11 @@ nkeymap('<leader>v', ':NERDTreeToggle <CR>')
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        winblend = 10,
+        previewer = false,
+    })
 end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
@@ -56,10 +56,10 @@ nkeymap('<leader>8l', ':diffget //3 <CR>')
 nkeymap('<leader>8r', ':diffget //2 <CR>')
 
 -- custom movements
-vim.api.nvim_set_keymap('n','<C-S-v>','<cmd>put *<CR>',{normap = ture})
-vim.api.nvim_set_keymap('v','<C-S-v>','<cmd>put *<CR>',{normap = ture})
-vim.api.nvim_set_keymap('c','<c-v>','<c-r>+',{normap = ture})
-vim.api.nvim_set_keymap('c','<c-s-v>','<c-r>"',{normap = ture})
+vim.api.nvim_set_keymap('n', '<C-S-v>', '<cmd>put *<CR>', { normap = ture })
+vim.api.nvim_set_keymap('v', '<C-S-v>', '<cmd>put *<CR>', { normap = ture })
+vim.api.nvim_set_keymap('c', '<c-v>', '<c-r>+', { normap = ture })
+vim.api.nvim_set_keymap('c', '<c-s-v>', '<c-r>"', { normap = ture })
 
 -- debugger
 nkeymap('<leader>db', ':call vimspector#ToggleBreakpoint() <CR>')
