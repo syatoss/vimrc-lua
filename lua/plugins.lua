@@ -9,11 +9,25 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+
+    use 'puremourning/vimspector'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    -- use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-lua/plenary.nvim')
     use('ThePrimeagen/harpoon')
     use('tpope/vim-fugitive')
+    use {
+        "puremourning/vimspector",
+        cmd = { "VimspectorInstall", "VimspectorUpdate" },
+        fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+        config = function()
+            require("config.vimspector").setup()
+        end,
+    }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
@@ -36,7 +50,11 @@ return require('packer').startup(function(use)
         },
         use('preservim/nerdtree'),
         use('tpope/vim-commentary'),
-        use('jiangmiao/auto-pairs'),
+        -- use('jiangmiao/auto-pairs'),
+        use {
+            "windwp/nvim-autopairs",
+            config = function() require("nvim-autopairs").setup {} end
+        },
         use {
             'lewis6991/gitsigns.nvim',
             tag = 'release',

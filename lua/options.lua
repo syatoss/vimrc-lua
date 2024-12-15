@@ -30,6 +30,7 @@ local options = {
     updatetime = 250,
     timeout = true,
     timeoutlen = 300,
+    spell = true,
     guifont = 'FantasqueSansMono Nerd Font:h22'
 }
 vim.g.NERDTreeShowHidden = 1

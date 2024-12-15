@@ -12,6 +12,7 @@ telescope.setup {
             ".git",
             "node_modules",
             "dist",
+            ".angular",
         }
     }
 }
